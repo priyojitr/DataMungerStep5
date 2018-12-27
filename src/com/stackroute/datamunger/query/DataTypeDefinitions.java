@@ -16,28 +16,25 @@ public class DataTypeDefinitions {
 
 	//method stub
 	public static Object getDataType(String input) {
-	
-		// checking for Integer
 		
-		// checking for floating point numbers
+		String value = null;
 		
-		// checking for date format dd/mm/yyyy
-		
-		// checking for date format mm/dd/yyyy
-		
-		// checking for date format dd-mon-yy
-		
-		// checking for date format dd-mon-yyyy
-		
-		// checking for date format dd-month-yy
-		
-		// checking for date format dd-month-yyyy
-		
-		// checking for date format yyyy-mm-dd
-		
-		return null;
+		if(input.matches("[0-9]+")) {
+			value = "java.lang.Integer";
+		} else if(input.matches("[0-9]+.[0-9]+")) {
+			value = "java.lang.Double";
+		} else if(input.matches("^[0-9]{2}/[0-9]{2}/[0-9]{4}$")
+				|| input.matches("^[0-9]{2}-[a-z]{3}-[0-9]{2}$")
+				|| input.matches("^[0-9]{2}-[a-z]{3}-[0-9]{4}$")
+				|| input.matches("^[0-9]{2}-[a-z]{3,9}-[0-9]{2}$")
+				|| input.matches("^[0-9]{2}-[a-z]{3,9}-[0-9]{4}$")
+				|| input.matches("^[0-9]{4}-[0-9]{2}-[0-9]{2}$")) {
+			value = "java.util.Date";
+		} else if(input.isEmpty()) {
+			value = "java.lang.Object";
+		} else {
+			value = "java.lang.String";
+		}
+		return value;
 	}
-	
-
-	
 }
